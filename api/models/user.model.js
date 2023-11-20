@@ -15,6 +15,10 @@ const userSchema=new mongoose.Schema({
         type:String,
         required:true,
     },
+    avatar:{
+        type:String,
+        default:"https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png"
+    },
 },{timestamps:true});
 
 const user=mongoose.model('User',userSchema);
