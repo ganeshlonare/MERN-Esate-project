@@ -47,7 +47,7 @@ export default function Listing() {
             {listing.imageUrls.map((url) => (
               <SwiperSlide key={url}>
                 <div
-                  className='h-[450px]'
+                  className='h-[500px]'
                   style={{
                     background: `url(${url}) center no-repeat`,
                     backgroundSize: 'cover',
@@ -112,6 +112,7 @@ export default function Listing() {
                 {listing.furnished ? 'Furnished' : 'Unfurnished'}
               </li>
             </ul>
+          <button className='bg-slate-700 p-3 text-white rounded-lg mt-5'>Contact Landlord</button>
           </div>
         </div>
       )}
