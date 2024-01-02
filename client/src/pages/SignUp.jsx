@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import {Link , useNavigate} from 'react-router-dom';
 import OAuth from '../components/Oauth';
+import { useDispatch } from 'react-redux';
+import {  signInSuccess } from '../redux/user/userSlice';
 
 export default function SignUp() {
 
@@ -8,6 +10,7 @@ export default function SignUp() {
   const [error,setError] = useState(null);
   const [loading,setLoading]=useState(false);
   const navigate=useNavigate();
+  const dispatch=useDispatch();
 
  const handleChange=(e)=> {
   setFormData({
@@ -36,7 +39,8 @@ const handleSubmit=async (e)=> {
     }
     setLoading(false);
     setError(null);
-    navigate('/sign-in');
+    dispatch(signInSuccess(data));
+    navigate('/');
   } catch (error) {
     setLoading(false);
     setError(error.message)

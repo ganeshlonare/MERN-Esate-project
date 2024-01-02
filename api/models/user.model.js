@@ -17,7 +17,7 @@ const userSchema=new mongoose.Schema({
     },
     avatar:{
         type:String,
-        default:"https://w7.pngwing.com/pngs/205/731/png-transparent-default-avatar-thumbnail.png"
+        default:"https://cdn-icons-png.flaticon.com/128/3135/3135715.png"
     },
 },{timestamps:true});
 
