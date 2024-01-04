@@ -3,12 +3,15 @@ import {Link , useNavigate} from 'react-router-dom';
 import OAuth from '../components/Oauth';
 import { useDispatch } from 'react-redux';
 import {  signInSuccess } from '../redux/user/userSlice';
+import {FaEyeSlash , FaEye} from 'react-icons/fa'
+
 
 export default function SignUp() {
 
   const [formData,setFormData] = useState({});
   const [error,setError] = useState(null);
   const [loading,setLoading]=useState(false);
+  const [passwordVisiblity , setPasswordVisiblity ] = useState(false);
   const navigate=useNavigate();
   const dispatch=useDispatch();
 
@@ -53,7 +56,16 @@ const handleSubmit=async (e)=> {
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input type="text" placeholder='Username' id='username' className='border p-3 rounded-lg' onChange={handleChange}/>
         <input type="email" placeholder='Email' id='email' className='border p-3 rounded-lg ' onChange={handleChange}/>
-        <input type="password" placeholder='Password' id='password' className='border p-3 rounded-lg ' onChange={handleChange}/>
+        <div className="flex items-center">
+          {
+            passwordVisiblity ? <FaEye onClick={()=>setPasswordVisiblity((curr)=>!curr)} className='absolute left-auto right-6 text-gray-500 cursor-pointer' /> :
+            <FaEyeSlash onClick={()=>setPasswordVisiblity((curr)=>!curr)} className='absolute left-auto right-6 text-gray-500 cursor-pointer' />
+          }
+        {
+          passwordVisiblity ? <input type="text" placeholder='Password' id='password' className='border p-3 rounded-lg w-full ' onChange={handleChange}/> :
+          <input type="password" placeholder='Password' id='password' className='border p-3 rounded-lg w-full ' onChange={handleChange}/>
+        }
+        </div>
         <button disabled={loading} className='bg-slate-700 rounded-lg p-3 text-white uppercase hover:opacity-95 disabled:opacity-80'>{loading ? `Loading...` : `sign up`}</button>
         <OAuth />
       </form>
