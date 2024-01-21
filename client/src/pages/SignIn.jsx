@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signInStart , signInFailure , signInSuccess } from '../redux/user/userSlice';
 import OAuth from '../components/OAuth'
 import {FaEyeSlash , FaEye} from 'react-icons/fa'
+import {Toaster , toast} from 'react-hot-toast'
 
 export default function SignIn() {
 
@@ -18,6 +19,7 @@ export default function SignIn() {
     ...formData,
     [e.target.id]:e.target.value,
   });
+   
  };
    
 const handleSubmit=async (e)=> {
@@ -39,21 +41,25 @@ const handleSubmit=async (e)=> {
     }
     dispatch(signInSuccess(data));
     navigate('/');
+    toast.success("sign in successfully")
+    
   } catch (error) {
     dispatch(signInFailure(error.message))
+    toast.error(error.message)
   }
 }
 
   return (
     <div className='p-3 max-w-lg mx-auto'>
+      <Toaster />
       <h1 className='text-center text-3xl font-semibold my-7' >Sign In</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input type="email" placeholder='Email' id='email' className='border p-3 rounded-lg ' onChange={handleChange}/>
         
-        <div className="flex items-center">
+        <div className="">
           {
-            passwordVisiblity ? <FaEye onClick={()=>setPasswordVisiblity((curr)=>!curr)} className='absolute left-auto right-6 text-gray-500 cursor-pointer' /> :
-            <FaEyeSlash onClick={()=>setPasswordVisiblity((curr)=>!curr)} className='absolute left-auto right-6 text-gray-500 cursor-pointer' />
+            passwordVisiblity ? <FaEye onClick={()=>setPasswordVisiblity((curr)=>!curr)} className='absolute md:ml-[460px] mt-4 ml-[450px] text-gray-600 cursor-pointer' /> :
+            <FaEyeSlash onClick={()=>setPasswordVisiblity((curr)=>!curr)} className='absolute md:ml-[460px] mt-4 ml-[450px] text-gray-600 cursor-pointer' />
           }
         {
           passwordVisiblity ? <input type="text" placeholder='Password' id='password' className='border p-3 rounded-lg w-full ' onChange={handleChange}/> :
@@ -67,7 +73,6 @@ const handleSubmit=async (e)=> {
       <p>Don't have an account?</p>
       <Link to="/sign-up"> <span className='text-blue-700'>sign up</span></Link>
       </div>
-      {error && <p className='text-red-600 mt-5' >{error}</p> }
       
     </div>
   )
