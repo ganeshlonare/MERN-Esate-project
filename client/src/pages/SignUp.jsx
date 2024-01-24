@@ -43,7 +43,7 @@ const handleSubmit=async (e)=> {
     setLoading(false);
     setError(null);
     dispatch(signInSuccess(data));
-    navigate('/');
+    navigate("/");
   } catch (error) {
     setLoading(false);
     setError(error.message)
@@ -56,10 +56,10 @@ const handleSubmit=async (e)=> {
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input type="text" placeholder='Username' id='username' className='border p-3 rounded-lg' onChange={handleChange}/>
         <input type="email" placeholder='Email' id='email' className='border p-3 rounded-lg ' onChange={handleChange}/>
-        <div className="flex items-center">
+        <div className="">
           {
-            passwordVisiblity ? <FaEye onClick={()=>setPasswordVisiblity((curr)=>!curr)} className='absolute left-auto right-6 text-gray-500 cursor-pointer' /> :
-            <FaEyeSlash onClick={()=>setPasswordVisiblity((curr)=>!curr)} className='absolute left-auto right-6 text-gray-500 cursor-pointer' />
+            passwordVisiblity ? <FaEye onClick={()=>setPasswordVisiblity((curr)=>!curr)} className='absolute md:ml-[460px] mt-4 ml-[450px] text-gray-600 cursor-pointer' /> :
+            <FaEyeSlash onClick={()=>setPasswordVisiblity((curr)=>!curr)} className='absolute md:ml-[460px] mt-4 ml-[450px] text-gray-600 cursor-pointer' />
           }
         {
           passwordVisiblity ? <input type="text" placeholder='Password' id='password' className='border p-3 rounded-lg w-full ' onChange={handleChange}/> :
