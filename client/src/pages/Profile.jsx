@@ -5,6 +5,7 @@ import {app} from '../firebase.js'
 import {updateUserStart,updateUserSuccess,updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserStart, signOutUserSuccess, signOutUserFailure} from '../redux/user/userSlice.js'
 import { useDispatch } from 'react-redux'
 import {Link} from 'react-router-dom'
+import {Toaster , toast} from 'react-hot-toast'
 
 export default function Profile() {
   const {currentUser ,loading , error} =useSelector((state)=> state.user)
@@ -70,6 +71,7 @@ export default function Profile() {
       }
       dispatch(updateUserSuccess(data));
       setUpdateSuccess(true);
+      toast.success("user updated successfully");
       
     } catch (error) {
       dispatch(updateUserFailure(error.message));
@@ -147,16 +149,21 @@ export default function Profile() {
     }
   };
 
+  if(fileperc===100) {
+     toast.success("Image uploaded successfully");
+  }
+
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-center text-3xl font-semibold my-7'>
         Profile
       </h1>
+      <Toaster />
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input onChange={(e)=>setFile(e.target.files[0])} type="file" ref={fileRef} hidden accept='image/*'/>
       <img onClick={()=>fileRef.current.click()} className='rounded-full h-24 w-24 object-cover cursor-pointer self-center mt-2' src={formData.avatar || currentUser.avatar} alt="Avatar" />
       <p className='text-sm self-center'>
-        {fileUploadError ? <span className='text-red-700'>Error Image Upload(Image must be less than 2mb)</span>:fileperc>0 && fileperc<100 ? ( <span className='text-lime-700'>{`Uploading ${fileperc}%`}</span> ) :fileperc===100 ? ( <span className='text-green-700'>Image successfully uploaded!</span>) : ('')}
+        {fileUploadError ? <span className='text-red-700'>Error Image Upload(Image must be less than 2mb)</span>:fileperc>0 && fileperc<100 ? ( <span className='text-lime-700'>{`Uploading ${fileperc}%`}</span> ) :""}
       </p>
       <input className='border p-3 rounded-lg' type="text" placeholder='username' id='username' defaultValue={currentUser.username} onChange={handleChange}/>
       <input className='border p-3 rounded-lg' type="email" placeholder='email' id='email' defaultValue={currentUser.email} onChange={handleChange}/>
@@ -171,7 +178,7 @@ export default function Profile() {
         <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>Sign out</span>
       </div>
       <p className='text-red-700'>{error? error : " "}</p>
-      <p className='text-green-700'>{updateSuccess ? "User is updated successfully": " "}</p>
+      <p className='text-green-700'>{updateSuccess ? "": " "}</p>
       <button onClick={handleShowListings} className='w-full text-green-700'>Show Listings</button>
       <p className='text-red-700 mt-5'>{showListingsError ? 'Error showing listings' : ''}</p>
       {userListings &&
