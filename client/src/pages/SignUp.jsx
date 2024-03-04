@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {Link , useNavigate} from 'react-router-dom';
-import OAuth from '../components/Oauth';
+import OAuth from '../components/OAuth';
 import { useDispatch } from 'react-redux';
 import {  signInSuccess } from '../redux/user/userSlice';
 import {FaEyeSlash , FaEye} from 'react-icons/fa'
