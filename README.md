@@ -1,4 +1,4 @@
-# Real Estate Website Web Development Project
+# MERN Stack Real Estate Website Project
 
 ## Overview
 This project is a dynamic Real Estate website developed using the MERN stack, comprising MongoDB, Express.js, React.js, and Node.js. The website serves as a platform for users to explore available properties, connect with real estate agents, and facilitate property transactions.
