@@ -19,7 +19,6 @@ export default function SignIn() {
     ...formData,
     [e.target.id]:e.target.value,
   });
-   
  };
    
 const handleSubmit=async (e)=> {
