@@ -58,7 +58,7 @@ import {useSelector} from 'react-redux'
 import logo from '../../public/search.png'
 import {FaSearch} from 'react-icons/fa'
 
-const Header = () => {
+export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
@@ -109,7 +109,7 @@ const Header = () => {
                   id="search" 
                   type="text" 
                   className={`block w-full border-0 rounded-full py-2 pl-8 pr-4 placeholder-gray-400 text-white focus:outline-none focus:bg-white focus:text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent ${isSearchOpen ? 'placeholder-gray-600' : 'placeholder-gray-400'}`} 
-                  placeholder="Search"  
+                  placeholder="Search..."  
                   value={searchTerm} 
                   onChange={(e)=>setSearchTerm(e.target.value)}
                 />
