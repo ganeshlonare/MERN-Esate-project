@@ -5,6 +5,8 @@ import { Navigation } from 'swiper/modules';
 import SwiperCore from 'swiper';
 import 'swiper/css/bundle';
 import ListingItem from '../components/ListingItem';
+import house from '../../../imgs/house.png'
+import Footer from '../components/Footer'
 
 export default function Home() {
   const [offerListings, setOfferListings] = useState([]);
@@ -47,6 +49,7 @@ export default function Home() {
   }, []);
   return (
     <div>
+      <div className='flex items-center'>
       <div className='flex flex-col gap-6 py-28 px-3 max-w-6xl mx-auto'>
         <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>
           Find your next <span className='text-slate-500'>perfect</span> <br /> place with ease
@@ -57,6 +60,11 @@ export default function Home() {
         <Link to={'/search'} className='text-xs sm:text-sm text-blue-800 font-bold hover:underline'>
           Explore More ...
         </Link>
+      </div>
+
+      <div className="max-w-md max-h-md lg:mr-16"> 
+        <img src={house} alt="house" className='h-fit' />
+      </div>
       </div>
 
       <Swiper navigation>
@@ -117,6 +125,7 @@ export default function Home() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 }
