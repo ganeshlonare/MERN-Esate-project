@@ -101,15 +101,15 @@ export const Header = () => {
               </div>
             </div>
           </div>
-          <form onSubmit={handleSubmit} className="flex-1 flex justify-center lg:justify-end">
+          <form onSubmit={handleSubmit} className="flex-1 flex justify-center lg:justify-end ">
             <div className="max-w-xs w-full lg:max-w-md">
               <label htmlFor="search" className="sr-only">Search</label>
-              <div className={`relative ${isSearchOpen ? 'ring-2 ring-blue-500' : ''} transition-all duration-300 ease-in-out`}>
+              <div className={`relative ${isSearchOpen ? ' ring-2 ring-blue-500' : ''} transition-all duration-300 ease-in-out`}>
                 <input 
                   id="search" 
                   type="text" 
-                  className={`block w-full border-0 rounded-full py-2 pl-8 pr-4 placeholder-gray-400 text-white focus:outline-none focus:bg-white focus:text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent ${isSearchOpen ? 'placeholder-gray-600' : 'placeholder-gray-400'}`} 
-                  placeholder="Search..."  
+                  className={`pl-10 bg-transparent border-gray-400 border-2 block w-full rounded-full py-2 pr-4 placeholder-gray-400 text-white focus:outline-none focus:bg-white focus:text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent ${isSearchOpen ? 'placeholder-gray-600' : 'placeholder-gray-400'}`} 
+                  placeholder="Search for your places..."  
                   value={searchTerm} 
                   onChange={(e)=>setSearchTerm(e.target.value)}
                 />
@@ -132,7 +132,7 @@ export const Header = () => {
           <Link to="/profile">
             {currentUser?(
                 <img className='rounded-full h-7 w-7 object-cover' src={currentUser.avatar} alt="profile" />
-            ):<li className='text-slate-700 hover:underline'>Sign in</li>
+            ):<h1 className='text-slate-700 hover:underline'>Sign in</h1>
             }
             </Link>
           </div>
